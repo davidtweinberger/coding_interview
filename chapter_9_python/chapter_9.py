@@ -238,12 +238,60 @@ def paintFill(screen, pixel, color):
 
 	return screen
 
-def centsRepresentations(n):
+def centsRepresentations(n, denom): 
+	#first call - denom is the largest coin denomination (in this case 25)
 	"""
 	Given an integer n, this function returns the number of ways that n cents 
 	can be represented with quarters, dimes, nickels and pennies.
+
+	NAIVE IMPLEMENTATION
+
+	This problem can be thought about in the following way: assume that when 
+	making change, you always give the coins in order from largest to smallest
+	value.  Thus, for n cents, you can give a quarter, and then calculate the ways 
+	of making change for n-25 cents with quarters or less; then assume you give a 
+	dime first and calculate the number of ways of making change for n-10 cents 
+	with dimes or less, and so on.
 	"""
-	pass
+	#base cases:
+	if (n<0):
+		return 0
+	if (n==0):
+		return 1
+
+	#recursive calls
+	S = 0
+	if (denom >= 25):
+		S += centsRepresentations(n-25, 25)
+	if (denom >= 10):
+		S += centsRepresentations(n-10, 10)
+	if (denom >= 5):
+		S += centsRepresentations(n-5, 5)
+	if (denom >= 1):
+		S += centsRepresentations(n-1, 1)
+	return S
+
+def eightQueens():
+	"""
+	An algorithm that prints all ways of arranging 8 queens on an 8x8 board
+	so that none share the same row, col or diagonal.
+
+	TODO - naive
+	"""
+	from itertools import permutations #uses this module to generate all permutations of range(7)
+	#each permutation represents the column index of the queen in each row - the first number in 
+	#the permutation is the col index of the queen in row 1, etc. So all that needs to be checked 
+	#is that queens don't overlap diagonally.
+
+	notdiagonal = lambda perm: True if \
+		len(set(map(lambda ele : ele[1] + ele[0], [ele for ele in enumerate(perm)]))) == 8 \
+		and len(set(map(lambda ele : ele[1] - ele[0], [ele for ele in enumerate(perm)]))) == 8 \
+		else False
+
+	perms = permutations(range(8))
+	for perm in perms:
+		if notdiagonal(perm):
+			print ("|\n".join('|_' * i + '|Q' + '|_' * (7-i) for i in perm) + "|\n===\n")
 
 def main():
 	#Tests go here
@@ -283,6 +331,13 @@ def main():
 	print paintFill(screen, (4, 8), "PINK")
 
 	#Problem 9.8
+	print centsRepresentations(200, 25)
+
+	#Problem 9.9
+	eightQueens()
+
+	#Problem 9.10 - TODO
+	#Problem 9.11 - TODO
 
 if __name__ == '__main__':
 	main()
