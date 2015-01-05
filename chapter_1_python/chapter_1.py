@@ -8,31 +8,30 @@ Brown University '16
 davidtweinberger@gmail.com 
 """
 
-"""1.1"""
-#an algorithm which determines whether or not a string has unique characters
-#uses the fact that sets contain distinct elements
-
+#Problem 1.1
 def unique_chars(s):
+	""" an algorithm which determines whether or not a string has unique characters
+	uses the fact that sets contain distinct elements """
 	char_set = set(s)
 	return (len(char_set) == len(s))
 
-"""1.2"""
-#an algorithm to reverse a null-terminated string
-#trivial in python
-
+#Problem 1.2
 def reverse_str(s):
+	""" an algorithm to reverse a null-terminated string
+	trivial in python """
 	return reversed(s) if s else ""
 
-"""1.3"""
-#an algorithm that determines if a string is a permutation of another string
-#in other words, if the two strings are angrams
-#arguments:
-#	s1 			the first string
-#	s2 			the second string
-#	ign 		a set of characters to be ignored (removed from the strings) (optional)
-#	ignore_case	should case should be ignored (optional)
-
+#Problem 1.3
 def str_permut(s1, s2, ign=None, ignore_case=False):
+	"""
+	an algorithm that determines if a string is a permutation of another string
+	in other words, if the two strings are angrams
+	arguments:
+		s1 			the first string
+		s2 			the second string
+		ign 		a set of characters to be ignored (removed from the strings) (optional)
+		ignore_case	should case should be ignored (optional)
+	"""
 	#tests for bad input
 	if (not s1 or not s2):
 		return False
@@ -63,22 +62,22 @@ def str_permut(s1, s2, ign=None, ignore_case=False):
 	#tests for equality
 	return s_s1 == s_s2
 
-"""1.4"""
-#an algorithm to replace spaces in a string with '%20'
-#trivial in python
-
+#Problem 1.4
 def replace_spaces(s):
+	""" an algorithm to replace spaces in a string with '%20'
+	trivial in python """
 	if not s:
 		return ''
 	return s.replace(" ", "%20")
 
-"""1.5"""
-#an algorithm to perform basic string compression using counts of repeated characters
-#note - this is not in place (that's not really feasible in python)
-#example:	aabcccccaaa --> a2b1c5a3
-#returns the original string if it is shorter
-
+#Problem 1.5
 def compress_str(s):
+	"""
+	an algorithm to perform basic string compression using counts of repeated characters
+	note - this is not in place (that's not really feasible in python)
+	example:	aabcccccaaa --> a2b1c5a3
+	returns the original string if it is shorter
+	"""
 	new_str = ''
 	count = 0
 	prev = None
@@ -102,12 +101,13 @@ def compress_str(s):
 
 	return new_str if (len(new_str) < len(s)) else s
 
-"""1.6"""
-#an algorithm to rotate a matrix by 90 degrees in place (not sure how it makes a 
-#difference that each pixel is 4 bytes)
-#pretty trivial in python using zip(), reversed() and list comprehension
-
+#Problem 1.6
 def rotate(m, direction="Right"):
+	"""
+	an algorithm to rotate a matrix by 90 degrees in place (not sure how it makes a 
+	difference that each pixel is 4 bytes)
+	pretty trivial in python using zip(), reversed() and list comprehension
+	"""
 	if not m:
 		return []
 	if direction=="Right":
@@ -118,11 +118,12 @@ def rotate(m, direction="Right"):
 		m = [list(reversed(elem)) for elem in zip(*m)] #looked up zip(*m) online ....
 	return m
 
-"""1.7"""
-#an algorithm such that if an element in a MxN matrix is 0, its row and column are set to 0
-#matrix m is given as a list of rows
-
+#Problem 1.7
 def zero(m):
+	"""
+	an algorithm such that if an element in a MxN matrix is 0, its row and column are set to 0
+	matrix m is given as a list of rows
+	"""
 	if not m:
 		return []
 
@@ -149,17 +150,18 @@ def zero(m):
 
 	return ret
 
-"""1.8"""
-#an algorithm that checks if a string s2 is a rotation of another string s1
-#using is_substring method only once.
-#trivial in python
-
+#Problem 1.8
 def is_rotation(s1, s2):
+	"""
+	an algorithm that checks if a string s2 is a rotation of another string s1
+	using is_substring method only once.
+	trivial in python
+	"""
 	if not s1 or not s2:
 		return False
 	return True if string.find(s1+s1, s2) > 0 else False
 
-"""main function with tests"""
+#main function with tests
 def main():
 
 	#tests unique_chars function

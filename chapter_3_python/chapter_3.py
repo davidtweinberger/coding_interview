@@ -556,17 +556,17 @@ class Cat(Animal):
 
 def main():
 	DCQueue = DogCatQueue()
-	DCQueue.enqueue(Dog("Berpa the dog"))
-	DCQueue.enqueue(Dog("Beasis the dog"))
-	DCQueue.enqueue(Cat("Buffet the cat"))
+	DCQueue.enqueue(Dog("A the dog"))
+	DCQueue.enqueue(Dog("B the dog"))
+	DCQueue.enqueue(Cat("C the cat"))
 	print DCQueue
 	DCQueue.dequeueAny()
 	DCQueue.dequeueAny()
 	DCQueue.dequeueAny()
 	print DCQueue
-	DCQueue.enqueue(Dog("Beasis the dog"))
-	DCQueue.enqueue(Cat("Buffet the cat"))
-	DCQueue.enqueue(Dog("Berpa the dog"))
+	DCQueue.enqueue(Dog("X the dog"))
+	DCQueue.enqueue(Cat("Y the cat"))
+	DCQueue.enqueue(Dog("Z the dog"))
 	print DCQueue
 	DCQueue.dequeueDog()
 	DCQueue.dequeueCat()

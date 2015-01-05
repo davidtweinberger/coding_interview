@@ -207,7 +207,7 @@ class singly_linked_list:
 	def remove_duplicates(self):
 		"""
 		Removes all duplicate elements in the list.  Returns the head
-		of the list, or None if invalid input.
+		of the list, or None if invalid input.  Uses a set() to keep track.
 		"""
 		#curr is used to traverse the list
 		curr = self._head
@@ -710,7 +710,7 @@ class sorted_list_node:
 		return str(self._data)
 
 
-"""Test cases for problems from chapter 2"""
+#Test cases for problems from chapter 2
 
 def problem_2_1():
 	l = singly_linked_list()
