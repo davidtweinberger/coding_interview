@@ -17,6 +17,21 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 		}
 	}
 
+	//toString method to print the list
+	@Override
+	public String toString(){
+		java.lang.StringBuilder sb = new java.lang.StringBuilder();
+		sb.append("head -> ");
+		Node<T> curr = _head;
+		while (curr != null){
+			sb.append(curr.toString());
+			sb.append(" -> ");
+			curr = curr.getNext();
+		}
+		sb.append("end");
+		return sb.toString();
+	}
+
 	//inner class representing a node in the list
 	private class Node<T>{
 
@@ -58,6 +73,11 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 		public void setNext(Node<T> next){
 			_next = next;
 		}
+
+		@Override
+		public String toString(){
+			return _data.toString();
+		}
 	}
 
 	public Boolean isEmpty(){
@@ -65,6 +85,9 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 	}
 
 	public Boolean insertAtTail(T data){
+		if (data == null){
+			return false;
+		}
 		if (_head == null){
 			_head = new Node<T>(data);
 		} else {
@@ -78,6 +101,9 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 	}
 
 	public Boolean insertAtHead(T data){
+		if (data == null){
+			return false;
+		}
 		_head = new Node<T>(data, _head);
 		return true;
 	}
@@ -95,7 +121,7 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 			while ((curr.getNext() != null) && (curr.getNext().getData().equals(data) == false)){
 				curr = curr.getNext();
 			}
-			if (curr.getNext() != null){
+			if (curr.getNext() == null){
 				return false;
 			}
 			else {
