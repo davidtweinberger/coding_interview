@@ -204,4 +204,32 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 		}
 	}
 
+	public T kthToLast(int k){
+		k--;
+		Node<T> curr = _head;
+		Node<T> kth = curr;
+		if (curr == null || k < 0){
+			return null;
+		}
+
+		for (int i=0; i<k; i++){
+			curr = curr.getNext();
+			if (curr == null){
+				return null; //list is too short
+			}
+		}
+
+		while (curr.getNext() != null){
+			curr = curr.getNext();
+			kth = kth.getNext();
+		}
+
+		return kth.getData();
+	}
+
+	public T deleteNode(T data){
+		//deletes the node with data given access only to that node.
+		
+	}
+
 }

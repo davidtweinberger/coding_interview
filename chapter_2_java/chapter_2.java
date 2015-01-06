@@ -74,6 +74,13 @@ public class chapter_2 {
 
 		System.out.println("Problem 2.1 test cases passed.");
 
+		l = new UnsortedSinglyLinkedList<Integer>(new Integer[]{4, 7, 19, 3, 20, 4, 1});
+		assert (l.kthToLast(1) == 1) : "Error in Problem 2 test cases";
+		assert (l.kthToLast(2) == 4) : "Error in Problem 2 test cases";
+		assert (l.kthToLast(3) == 20) : "Error in Problem 2 test cases";
+
+		System.out.println("Problem 2.2 test cases passed.");
+
 	}
 
 	public static void main(String[] args) {
