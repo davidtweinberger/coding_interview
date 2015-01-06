@@ -41,6 +41,14 @@ The code is structured as a set of directories, each of which is named after the
  $ java -ea <folder/package name>.<filename>
  # for example, java -ea chapter_1_java.chapter_1
  ```
-
+- C:
+ - Each C directory includes a Makefile which compiles the code.  To run it, type into a shell:
+ ```
+ $ make
+ ``` 
+ - to run, type the following:
+ ```
+ $ ./<filename>
+ ```
 
 That's all there is!
