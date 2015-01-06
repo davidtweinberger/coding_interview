@@ -1,6 +1,6 @@
 package chapter_2_java;
 
-public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
+public class UnsortedSinglyLinkedList<T extends java.lang.Comparable<T>> {
 
 	private Node<T> _head;
 
@@ -33,7 +33,7 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 	}
 
 	//inner class representing a node in the list
-	private class Node<T>{
+	private class Node<T extends java.lang.Comparable<T>>{
 
 		//node ivars
 		private T _data;
@@ -77,6 +77,16 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 		@Override
 		public String toString(){
 			return _data.toString();
+		}
+
+		public int compareTo(T obj){
+			if (this.getData().compareTo(obj) < 0){
+				return -1;
+			} else if (this.getData().compareTo(obj) == 0){
+				return 0;
+			} else {
+				return 1;
+			}
 		}
 	}
 
@@ -227,9 +237,73 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 		return kth.getData();
 	}
 
-	public T deleteNode(T data){
+	public void deleteNode(T data){
 		//deletes the node with data given access only to that node.
-		
+		//does not work on the head or the tail nodes
+		Node<T> toDelete;
+		if ((toDelete = getNode(data)) != null){
+			toDelete.setData(toDelete.getNext().getData());
+			toDelete.setNext(toDelete.getNext().getNext());
+		}
+	}
+
+	private Node<T> getNode(T data){
+		//searches for and returns the first instance of a node with the specified data
+		if (data == null){
+			return null;
+		} else if (_head == null){
+			return null;
+		} else {
+			Node<T> curr = _head;
+			while (curr.getData().equals(data) == false){
+				curr = curr.getNext();
+				if (curr == null){
+					return null;
+				}
+			}
+			return curr;
+		}
+	}
+
+	public UnsortedSinglyLinkedList<T> partition(T val){
+		//returns a new LinkedList instance that is partitioned around a value
+		if (val == null){
+			return null;
+		}
+		UnsortedSinglyLinkedList<T> newlist = new UnsortedSinglyLinkedList<T>();
+		Node<T> curr = _head;
+		while (curr != null){
+			if (curr.compareTo(val) < 0){
+				newlist.insertAtHead(curr.getData());
+			}
+			else {
+				newlist.insertAtTail(curr.getData());
+			}
+			curr = curr.getNext();
+		}
+		return newlist;
+	}
+
+	public Boolean isPartitioned(T val){
+		//returns true if the list is partitioned around some value val
+		//partitioned means that all values less than val come before all values greater than or equal to val.
+		Node<T> curr = _head;
+		if (curr == null){
+			return true;
+		}
+		while (curr.compareTo(val) < 0){
+			curr = curr.getNext();
+			if (curr == null){
+				return true;
+			}
+		}
+		while (curr.compareTo(val) >= 0){			
+			curr = curr.getNext();
+			if (curr == null){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

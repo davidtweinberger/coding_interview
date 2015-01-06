@@ -81,6 +81,33 @@ public class chapter_2 {
 
 		System.out.println("Problem 2.2 test cases passed.");
 
+		l = new UnsortedSinglyLinkedList<Integer>(new Integer[]{4, 7, 19, 3, 20, 4, 1});
+		l.deleteNode(19);
+		assert (l.toString().equals("head -> 4 -> 7 -> 3 -> 20 -> 4 -> 1 -> end")) : "Error in Problem 3 test cases";
+		l.deleteNode(20);
+		assert (l.toString().equals("head -> 4 -> 7 -> 3 -> 4 -> 1 -> end")) : "Error in Problem 3 test cases";
+		l.deleteNode(7);
+		assert (l.toString().equals("head -> 4 -> 3 -> 4 -> 1 -> end")) : "Error in Problem 3 test cases";
+
+		System.out.println("Problem 2.3 test cases passed.");
+
+		l = new UnsortedSinglyLinkedList<Integer>(new Integer[]{4, 7, 9, 12, 5, 1, 0, 19, 3, 20, 4, 1, 10, 53, 9, 10});
+		l = l.partition(8);
+		assert (l.isPartitioned(8) == true): "Error in Problem 4 test cases";
+		l = l.partition(4);
+		assert (l.isPartitioned(4) == true): "Error in Problem 4 test cases";
+		l = l.partition(15);
+		assert (l.isPartitioned(15) == true): "Error in Problem 4 test cases";
+		l = l.partition(0);
+		assert (l.isPartitioned(0) == true): "Error in Problem 4 test cases";
+		l = l.partition(100);
+		assert (l.isPartitioned(100) == true): "Error in Problem 4 test cases";
+
+		System.out.println("Problem 2.4 test cases passed.");
+
+		System.out.println("TODO: 2.5, 2.6, 2.7");
+		//TODO: 2.5, 2.6, 2.7
+
 	}
 
 	public static void main(String[] args) {
