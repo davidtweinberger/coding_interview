@@ -56,6 +56,24 @@ public class chapter_2 {
 		assert (m.toString().equals("head -> C -> end")) : "Error in basic test cases";
 
 		System.out.println("Basic tests passed.");
+
+		//problem 2.1 test cases
+		m = new UnsortedSinglyLinkedList<Character>(new Character[]{'A', 'A', 'b', 'c', 'd', 'c', 'A', 'd', 'E'});
+		m.removeDuplicates();
+		assert (m.toString().equals("head -> A -> b -> c -> d -> E -> end")) : "Error in Problem 1 test cases";
+		m = new UnsortedSinglyLinkedList<Character>(new Character[]{'A', 'A', 'b', 'c', 'd', 'c', 'A', 'd', 'A'});
+		m.removeDuplicates();
+		assert (m.toString().equals("head -> A -> b -> c -> d -> end")) : "Error in Problem 1 test cases";
+
+		m = new UnsortedSinglyLinkedList<Character>(new Character[]{'A', 'A', 'b', 'c', 'd', 'c', 'A', 'd', 'E'});
+		m.removeDuplicatesWithoutSet();
+		assert (m.toString().equals("head -> A -> b -> c -> d -> E -> end")) : "Error in Problem 1 test cases";
+		m = new UnsortedSinglyLinkedList<Character>(new Character[]{'A', 'A', 'b', 'c', 'd', 'c', 'A', 'd', 'A', 'A'});
+		m.removeDuplicatesWithoutSet();
+		assert (m.toString().equals("head -> A -> b -> c -> d -> end")) : "Error in Problem 1 test cases";
+
+		System.out.println("Problem 2.1 test cases passed.");
+
 	}
 
 	public static void main(String[] args) {

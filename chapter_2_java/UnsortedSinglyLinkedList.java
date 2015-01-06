@@ -80,6 +80,8 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 		}
 	}
 
+	//basic methods
+
 	public Boolean isEmpty(){
 		return (_head == null);
 	}
@@ -145,6 +147,60 @@ public class UnsortedSinglyLinkedList<T extends java.lang.Object> {
 				}
 			}
 			return true;
+		}
+	}
+
+	/* LINKED LIST ALGORITHMS */
+
+	//stable algorithm to remove duplicates from a linked list.
+	public void removeDuplicates(){
+		Node<T> curr = _head;
+		if (curr == null){
+			return;
+		}
+
+		//Uses a HashSet starting out with the data from the first node
+		java.util.HashSet<T> set = new java.util.HashSet<T>();
+		set.add(curr.getData());
+
+		while (curr.getNext() != null){
+			//adds the data from the next node at each iteration
+			if (set.add(curr.getNext().getData()) == false){
+				//if next node's data is in the set already, then delete the next node
+				//and go to the next iteration without updating curr
+				curr.setNext(curr.getNext().getNext());
+				continue;
+			}
+			//otherwise, update curr and make sure it is not null
+			curr = curr.getNext();
+			if (curr == null){
+				break;
+			}
+		}
+	}
+
+	//stable algorithm to remove duplicates from a linked list.
+	public void removeDuplicatesWithoutSet(){
+		Node<T> curr = _head;
+		Node<T> temp = curr; 
+		if (curr == null){
+			return;
+		}
+
+		//outer while loop iterates through all nodes
+		while (curr != null){
+			//keep track of the current node
+			temp = curr;
+			//inner while loop iterates through nodes after curr and removes duplicates
+			while (curr != null && curr.getNext() != null){
+				if (curr.getNext().getData() == temp.getData()){
+					curr.setNext(curr.getNext().getNext());
+				} else {
+					curr = curr.getNext();
+				}
+			}
+			//curr updates back to temp's next
+			curr = temp.getNext();
 		}
 	}
 
