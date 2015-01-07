@@ -41,12 +41,18 @@ public class DocumentParser {
 		System.out.println(_table);
 	}
 
-	public String parseToSentence(String s){
+	public String parseToSentence(String s, int start, int end){
 		//parses a sequence of words with no spaces separating them into a sentence.
+		//uses the letters in [start, end)
+		
 		return null;
 	}
 	
 	public static void main(String[] args) {
+		if (args.length == 0){
+			System.err.println("Error - needs a source dictionary.");
+			System.exit(1);
+		}
 		DocumentParser dp = new DocumentParser();
 		for (int i=0; i<args.length; i++){
 			dp.readFileToTable(args[i]);
